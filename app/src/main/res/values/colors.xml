@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff5722</color>
+    <color name="colorPrimaryDark">#f74d18</color>
+    <color name="colorAccent">#f5f5f5</color>
+    <color name="coloActivityPhone">#ff5722</color>
+    <color name="coloActivityChiTiet">#ff5722</color>
+    <color name="coloActivityLaptop">#ff5722</color>
+    <color name="coloActivityThongtin">#ff5722</color>
+    <color name="coloActivityLienHe">#ff5722</color>
+    <color name="coloActivityThongke">#ff5722</color>
+    <color name="coloActivityGioHang">#ff5722</color>
+    <color name="cololviewMenu">#fff</color>
+</resources>

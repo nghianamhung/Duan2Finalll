@@ -2,6 +2,8 @@ package com.example.khangit.project_group3.activity;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.example.khangit.project_group3.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,6 +14,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ThongTinActivity extends FragmentActivity implements OnMapReadyCallback {
+    Toolbar toolbardt;
+
+
 
     private GoogleMap mMap;
 
@@ -44,4 +49,6 @@ public class ThongTinActivity extends FragmentActivity implements OnMapReadyCall
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-}
+
+
+    }

@@ -22,7 +22,7 @@
             android:textColor="#fafafa"
             android:layout_margin="10dp"
             android:layout_gravity="center"
-            android:text="Thông tin về chúng tôi"
+            android:text="HiTech Store"
             android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -38,7 +38,7 @@
                 android:layout_margin="30dp"
                 android:textSize="20sp"
                 android:textColor="#020202"
-                android:text="Địa chỉ: ..."
+                android:text="Địa chỉ: 22/15M Huỳnh Đinh Hai - Bình Thạnh - TP.HCM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -50,7 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:map="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"

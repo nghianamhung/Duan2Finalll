@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 4 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
+                            Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
                             startActivity(intent);
                         }else {
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 5 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
+                            Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
                             startActivity(intent);
                         }else {

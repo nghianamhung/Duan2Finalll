@@ -11,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ViewFlipper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,6 +31,7 @@ import com.example.khangit.project_group3.adapter.DienThoaiAdapter;
 import com.example.khangit.project_group3.model.Sanpham;
 import com.example.khangit.project_group3.ultil.CheckConnection;
 import com.example.khangit.project_group3.ultil.Server;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +43,7 @@ import java.util.Map;
 
 public class DienThoaiActivity extends AppCompatActivity {
     Toolbar toolbardt;
+    ViewFlipper viewFlipper;
     ListView lvdt;
     DienThoaiAdapter dienThoaiAdapter;
     ArrayList<Sanpham> mangdt;
@@ -53,8 +59,9 @@ public class DienThoaiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dien_thoai);
         Anhxa();
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-            GetIdloaisp();
             ActionToolbar();
+//            ActionViewFlipper();
+            GetIdloaisp();
             GetData(page);
             LoadMoreData();
         }else {
@@ -216,4 +223,23 @@ public class DienThoaiActivity extends AppCompatActivity {
             super.run();
         }
     }
+
+//    private void ActionViewFlipper() {
+//        ArrayList<String> mangquangcao = new ArrayList<>();
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/08_10_2018_09_17_53_HuaweiY9-800-300.png");
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/09_10_2018_11_20_08_Oppo-f9-tim-800-300.png");
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/12_10_2018_11_12_53_Hot-sale-Galaxy-A6+-800-300.png");
+//        for (int i = 0; i < mangquangcao.size(); i++) {
+//            ImageView imageView = new ImageView(DienThoaiActivity.this);
+//            Picasso.with(DienThoaiActivity.this).load(mangquangcao.get(i)).into(imageView);
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            viewFlipper.addView(imageView);
+//        }
+//        viewFlipper.setFlipInterval(5000);
+//        Animation in = AnimationUtils.loadAnimation(DienThoaiActivity.this, R.anim.fade_in);
+//        Animation out = AnimationUtils.loadAnimation(DienThoaiActivity.this, R.anim.fade_out);
+//        viewFlipper.setInAnimation(in);
+//        viewFlipper.setOutAnimation(out);
+//        viewFlipper.setAutoStart(true);
+//    }
 }

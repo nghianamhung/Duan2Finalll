@@ -73,7 +73,7 @@
         android:background="#fff"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="200dp">
         <TextView
             android:layout_marginLeft="30dp"
             android:textColor="#f20"
@@ -88,6 +88,33 @@
             android:layout_height="wrap_content">
             <me.biubiubiu.justifytext.library.JustifyTextView
                 android:id="@+id/textviewmotachitietsanpham"
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:background="#fff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:textColor="#f20"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Người dùng đánh giá"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:id="@+id/textviewdanhgiachitietsanpham"
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"
                 android:layout_marginLeft="20dp"

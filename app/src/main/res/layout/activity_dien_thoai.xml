@@ -14,10 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
     </android.support.v7.widget.Toolbar>
+    <ViewFlipper
+        android:id="@+id/viewflipper_activity_dienthoai"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/banner">
+    </ViewFlipper>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:id="@+id/listviewdienthoai"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp">
     </ListView>
+    </LinearLayout>
 </LinearLayout>

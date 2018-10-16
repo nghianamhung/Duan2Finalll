@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         drawerLayoutMain.closeDrawer(GravityCompat.START);
                         break;
-                    case 4 :
+                    case 5 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         drawerLayoutMain.closeDrawer(GravityCompat.START);
                         break;
-                    case 5 :
+                    case 6 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
@@ -229,8 +229,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 }
-                arrayListmodelPro.add(4, new ModelProduct(0,"Tài khoản","https://png.icons8.com/office/40/000000/administrator-male.png"));
-                arrayListmodelPro.add(5, new ModelProduct(0,"Liên Hệ","https://i.imgur.com/BT9ShMC.png"));
+//                arrayListmodelPro.add(5, new ModelProduct(0,"Tài khoản","https://png.icons8.com/office/40/000000/administrator-male.png"));
+//                arrayListmodelPro.add(6, new ModelProduct(0,"Liên Hệ","https://i.imgur.com/BT9ShMC.png"));
             }
         }, new Response.ErrorListener() {
             @Override

@@ -16,10 +16,9 @@
         android:layout_height="?attr/actionBarSize">
     </android.support.v7.widget.Toolbar>
     <ViewFlipper
-        android:id="@+id/viewflipper_activity_dienthoai"
+        android:id="@+id/viewflipper_activity_pc"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/banner2">
+        android:layout_height="200dp">
     </ViewFlipper>
     <ListView
         android:id="@+id/listviewpcmaytinh"

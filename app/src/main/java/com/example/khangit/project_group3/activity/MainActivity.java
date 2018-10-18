@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void ActionViewFlipper() {
+    protected void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
         mangquangcao.add("https://cdn.tgdd.vn/qcao/08_10_2018_09_17_53_HuaweiY9-800-300.png");
         mangquangcao.add("https://cdn.tgdd.vn/qcao/09_10_2018_11_20_08_Oppo-f9-tim-800-300.png");

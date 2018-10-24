@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerLayoutMain = (DrawerLayout) findViewById(R.id.drawerlayout_activity_main);
         arrayListmodelPro = new ArrayList<>();
-        arrayListmodelPro.add(0, new ModelProduct(0, "Home","https://i.imgur.com/R0dJK3E.png"));
+//        arrayListmodelPro.add(0, new ModelProduct(0, "Home","https://i.imgur.com/R0dJK3E.png"));
 
         modelProductAdapter = new ModelProductAdapter(arrayListmodelPro,getApplicationContext());
         listViewMain.setAdapter(modelProductAdapter);

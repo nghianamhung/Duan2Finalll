@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.khangit.project_group3.R;
 import com.example.khangit.project_group3.adapter.GiohangAdapter;
+import com.example.khangit.project_group3.model.KhachHang;
 import com.example.khangit.project_group3.ultil.CheckConnection;
 
 import org.w3c.dom.Text;
@@ -54,9 +55,16 @@ public class Giohang extends AppCompatActivity {
         btnthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(MainActivity.manggiohang.size() > 0){
-                    Intent intent = new Intent(getApplicationContext(), Thongtinkhachhang.class);
-                    startActivity(intent);
+
+                    if (KhachHang.Trangthai == "ok") {
+                        Intent intent = new Intent(getApplicationContext(), Thongtinkhachhang.class);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 else{
                     CheckConnection.ShowToast_Short(getApplicationContext(), "Giỏ hàng của bạn chưa có sản phẩm để thanh toán");

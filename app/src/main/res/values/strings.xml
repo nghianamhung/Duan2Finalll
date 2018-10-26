@@ -10,4 +10,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_title">ĐĂNG NHẬP</string>
+    <string name="login_lable1">Tài Khoản</string>
+    <string name="login_lable2">Mật Khẩu</string>
+    <string name="login_btn">Đăng nhập</string>
+    <string name="register_title">TẠO TÀI KHOẢN</string>
+    <string name="register_email">Email</string>
+    <string name="register_btn">Đăng Ký</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_result_login">ResultLogin</string>
 </resources>

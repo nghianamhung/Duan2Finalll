@@ -11,4 +11,18 @@
     <color name="coloActivityThongke">#ff5722</color>
     <color name="coloActivityGioHang">#ff5722</color>
     <color name="cololviewMenu">#fff</color>
+
+    <color name="bg_login">#ff5722</color>
+    <color name="bg_register">#ff5722</color>
+    <color name="bg_main">#428bca</color>
+    <color name="white">#ffffff</color>
+    <color name="input_login">#222222</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="input_register">#ff5722</color>
+    <color name="input_register_bg">#f5f5f5</color>
+    <color name="input_register_hint">#999999</color>
+    <color name="btn_login">#ff5722</color>
+    <color name="btn_login_bg">#eceef1</color>
+    <color name="lbl_name">#333333</color>
+    <color name="btn_logut_bg">#ff6861</color>
 </resources>

@@ -7,6 +7,10 @@ public class Server {
     public static String Duongdandienthoai = "http://" +localhost + "/thietbi/getsanpham.php?page=";
     public static String Duongdandonhang = "http://" +localhost + "/thietbi/thongtinkhachhang.php";
     public static String Duongdanchitietdonhang = "http://" +localhost + "/thietbi/chitietdonhang.php";
+    public static String Duongdanlogin = "http://" +localhost + "/thietbi/Login/login.php";
+    public static String Duongdanregister = "http://" +localhost + "/thietbi/Login/register.php";
+
+
 }
 
 

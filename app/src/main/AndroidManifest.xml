@@ -34,6 +34,9 @@
         <activity android:name=".activity.ChiTietSanPham" />
         <activity android:name=".activity.Giohang" />
         <activity android:name=".activity.Thongtinkhachhang" />
+        <activity android:name=".activity.LoginActivity" />
+
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -55,7 +58,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"></activity>
+            android:label="@string/title_activity_main2" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

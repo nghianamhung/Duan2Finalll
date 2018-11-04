@@ -18,8 +18,11 @@
     <string name="register_title">TẠO TÀI KHOẢN</string>
     <string name="register_email">Email</string>
     <string name="register_btn">Đăng Ký</string>
+    <string name="Update_btn">Cập nhập</string>
+
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_result_login">ResultLogin</string>
+    <string name="tenkhachhanghint"> a </string>
 </resources>

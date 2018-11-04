@@ -112,9 +112,12 @@ public class LoginActivity extends AppCompatActivity {
                                     message = jsonObject.getString("message");
                                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(LoginActivity.this, Giohang.class);
+                                    Intent intent = new Intent(LoginActivity.this,InfoUser.class);
                                     intent.putExtra("login", khachHang);
+
                                     startActivity(intent);
+                                    finish();
+
                                 } else {
                                     message = jsonObject.getString("message");
                                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();

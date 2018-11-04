@@ -20,6 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
     </ViewFlipper>
+    <EditText android:id="@+id/inputSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search products.."
+        android:inputType="textVisiblePassword"/>
     <ListView
         android:id="@+id/listviewpcmaytinh"
         android:layout_width="match_parent"

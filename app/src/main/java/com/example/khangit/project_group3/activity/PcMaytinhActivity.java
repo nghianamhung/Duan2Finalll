@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +18,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterViewFlipper;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
@@ -46,6 +50,8 @@ public class PcMaytinhActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
     Toolbar toolbardt;
     ListView lvdt;
+    private EditText inputSearch;
+
     DienThoaiAdapter dienThoaiAdapter;
     ArrayList<Sanpham> mangdt;
     int iddt = 0;
@@ -60,7 +66,7 @@ public class PcMaytinhActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pc_maytinh);
         Anhxa();
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-            ActionViewFlipper();
+//            ActionViewFlipper();
             GetIdloaisp();
             ActionToolbar();
             GetData(page);
@@ -69,6 +75,28 @@ public class PcMaytinhActivity extends AppCompatActivity {
             CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại Internet");
             finish();
         }
+
+
+        inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                PcMaytinhActivity.this.lvdt.getAdapter();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
 
     }
 
@@ -127,6 +155,9 @@ public class PcMaytinhActivity extends AppCompatActivity {
                 String Hinhanhdt = "";
                 String Mota = "";
                 int Idspdt = 0;
+                int Soluongsanpham;
+                String Usernamedg;
+                String Danhgiasanpham;
                 if (response !=null && response.length() != 2){
                     lvdt.removeFooterView(footerview);
                     try {
@@ -139,7 +170,10 @@ public class PcMaytinhActivity extends AppCompatActivity {
                             Hinhanhdt = jsonObject.getString("hinhanhsp");
                             Mota = jsonObject.getString("motasp");
                             Idspdt = jsonObject.getInt("idsanpham");
-                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt));
+                            Soluongsanpham = jsonObject.getInt("soluongsanpham");
+                            Usernamedg = jsonObject.getString("usernamedg");
+                            Danhgiasanpham = jsonObject.getString("danhgiasanpham");
+                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt,Soluongsanpham,Usernamedg,Danhgiasanpham));
                             dienThoaiAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
@@ -184,6 +218,7 @@ public class PcMaytinhActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        inputSearch = (EditText) findViewById(R.id.inputSearch);
         toolbardt = findViewById(R.id.toolbarpcmaytinh);
         lvdt = findViewById(R.id.listviewpcmaytinh);
         mangdt = new ArrayList<>();
@@ -224,22 +259,22 @@ public class PcMaytinhActivity extends AppCompatActivity {
             super.run();
         }
     }
-        private void ActionViewFlipper () {
-        ArrayList<String> mangquangcao = new ArrayList<>();
-        mangquangcao.add("https://cdn.tgdd.vn/qcao/08_10_2018_09_17_53_HuaweiY9-800-300.png");
-        mangquangcao.add("https://cdn.tgdd.vn/qcao/09_10_2018_11_20_08_Oppo-f9-tim-800-300.png");
-        mangquangcao.add("https://cdn.tgdd.vn/qcao/12_10_2018_11_12_53_Hot-sale-Galaxy-A6+-800-300.png");
-            for (int i = 0; i < mangquangcao.size(); i++) {
-            ImageView imageView = new ImageView(PcMaytinhActivity.this);
-            Picasso.with(PcMaytinhActivity.this).load(mangquangcao.get(i)).into(imageView);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            viewFlipper.addView(imageView);
-        }
-        viewFlipper.setFlipInterval(5000);
-        Animation in = AnimationUtils.loadAnimation(PcMaytinhActivity.this, R.anim.fade_in);
-        Animation out = AnimationUtils.loadAnimation(PcMaytinhActivity.this, R.anim.fade_out);
-        viewFlipper.setInAnimation(in);
-        viewFlipper.setOutAnimation(out);
-        viewFlipper.setAutoStart(true);
-    }
+//        private void ActionViewFlipper () {
+//        ArrayList<String> mangquangcao = new ArrayList<>();
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/08_10_2018_09_17_53_HuaweiY9-800-300.png");
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/09_10_2018_11_20_08_Oppo-f9-tim-800-300.png");
+//        mangquangcao.add("https://cdn.tgdd.vn/qcao/12_10_2018_11_12_53_Hot-sale-Galaxy-A6+-800-300.png");
+//            for (int i = 0; i < mangquangcao.size(); i++) {
+//            ImageView imageView = new ImageView(PcMaytinhActivity.this);
+//            Picasso.with(PcMaytinhActivity.this).load(mangquangcao.get(i)).into(imageView);
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            viewFlipper.addView(imageView);
+//        }
+//        viewFlipper.setFlipInterval(5000);
+//        Animation in = AnimationUtils.loadAnimation(PcMaytinhActivity.this, R.anim.fade_in);
+//        Animation out = AnimationUtils.loadAnimation(PcMaytinhActivity.this, R.anim.fade_out);
+//        viewFlipper.setInAnimation(in);
+//        viewFlipper.setOutAnimation(out);
+//        viewFlipper.setAutoStart(true);
+//    }
 }

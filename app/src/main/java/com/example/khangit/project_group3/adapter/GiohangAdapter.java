@@ -1,6 +1,7 @@
 package com.example.khangit.project_group3.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,12 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import static android.content.Intent.getIntent;
+
 public class GiohangAdapter extends BaseAdapter{
     Context context;
     ArrayList<Giohang> arraygiohang;
+
 
 
     public GiohangAdapter(Context context, ArrayList<Giohang> arraygiohang) {
@@ -77,7 +81,7 @@ public class GiohangAdapter extends BaseAdapter{
                 .into(viewHolder.imggiohang);
         viewHolder.btnvalues.setText(giohang.getSoluongsp() +"");
         int sl = Integer.parseInt(viewHolder.btnvalues.getText().toString());
-        if(sl >= 10){
+        if(sl >= Sanpham.Soluonggioihan){
             viewHolder.btnplus.setVisibility(View.INVISIBLE);
             viewHolder.btnminus.setVisibility(View.VISIBLE);
         }else if(sl <= 1){
@@ -98,7 +102,7 @@ public class GiohangAdapter extends BaseAdapter{
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
                 viewHolder.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+ " Đ");
                 com.example.khangit.project_group3.activity.Giohang.initEvent();
-                if(slmoinhat >9){
+                if(slmoinhat >Sanpham.Soluonggioihan){
                     viewHolder.btnplus.setVisibility(View.INVISIBLE);
                     viewHolder.btnminus.setVisibility(View.VISIBLE);
                     viewHolder.btnvalues.setText(String.valueOf(slmoinhat));
@@ -136,5 +140,11 @@ public class GiohangAdapter extends BaseAdapter{
         });
 
         return view;
+    }
+
+
+
+    private Intent getIntent() {
+        return null;
     }
 }

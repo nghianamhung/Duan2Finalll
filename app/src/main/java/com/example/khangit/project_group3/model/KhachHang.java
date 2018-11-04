@@ -1,18 +1,23 @@
 package com.example.khangit.project_group3.model;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.khangit.project_group3.R;
+
 import java.io.Serializable;
 
-public class KhachHang implements  Serializable {
+public class KhachHang extends AppCompatActivity implements  Serializable {
 
     public static String Trangthai;
-    private String userName;
+    public String userName;
     private String password;
     private String email;
     private String phone;
     private String ngaysinh;
     private String diachi;
     private String hoten;
-
 
 
     public String getHoten() {
@@ -22,7 +27,6 @@ public class KhachHang implements  Serializable {
     public void setHoten(String hoten) {
         this.hoten = hoten;
     }
-
 
 
     public String getUserName() {
@@ -72,4 +76,6 @@ public class KhachHang implements  Serializable {
     public void setDiachi(String diachi) {
         this.diachi = diachi;
     }
+
+
 }

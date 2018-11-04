@@ -29,9 +29,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.khangit.project_group3.R;
+import com.example.khangit.project_group3.adapter.DanhgiaAdapter;
 import com.example.khangit.project_group3.adapter.ModelProductAdapter;
 import com.example.khangit.project_group3.adapter.SanphamAdapter;
+import com.example.khangit.project_group3.model.Danhgia;
 import com.example.khangit.project_group3.model.Giohang;
+import com.example.khangit.project_group3.model.KhachHang;
 import com.example.khangit.project_group3.model.ModelProduct;
 import com.example.khangit.project_group3.model.Sanpham;
 import com.example.khangit.project_group3.ultil.CheckConnection;
@@ -61,11 +64,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SanphamAdapter sanphamAdapter;
     Context context;
     public static  ArrayList<Giohang> manggiohang;
+    private KhachHang khachHang;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        khachHang = new KhachHang();
+        khachHang = (KhachHang) intent.getSerializableExtra("login");
         initControl();
         
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
@@ -103,9 +113,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch(i){
                     case 0 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
-                            startActivity(intent);
+                            if (KhachHang.Trangthai == "ok") {
+                                Intent intent = new Intent(MainActivity.this, InfoUser.class);
+                                intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
+                                intent.putExtra("login", khachHang);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                            }
+
                         }else {
                             CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
                         }
@@ -141,7 +158,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         drawerLayoutMain.closeDrawer(GravityCompat.START);
                         break;
-                    case 5 :
+                    case 4:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, PcMaytinhActivity.class);
+                            intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayoutMain.closeDrawer(GravityCompat.START);
+                        break;
+                    case 10 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
@@ -151,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         drawerLayoutMain.closeDrawer(GravityCompat.START);
                         break;
-                    case 6 :
+                    case 11 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
                             intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
@@ -182,6 +209,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             String Hinhanhsanpham = "";
                             String Motasanpham = "";
                             int IDsanpham = 0;
+                            int Soluongsanpham = 0;
+                            String Usernamedg;
+                            String Danhgiasanpham;
                             try {
                                 for(int i = 0; i < response.length(); i++){
                                     JSONObject jsonObject = response.getJSONObject(i);
@@ -191,7 +221,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     Hinhanhsanpham = jsonObject.getString("hinhanhsp");
                                     Motasanpham = jsonObject.getString("motasp");
                                     IDsanpham = jsonObject.getInt("idsanpham");
-                                    mangsanpham.add(new Sanpham(ID,Tensanpham,Giasanpham,Hinhanhsanpham,Motasanpham,IDsanpham));
+                                    Soluongsanpham = jsonObject.getInt("soluongsanpham");
+                                    Usernamedg = jsonObject.getString("usernamedg");
+                                    Danhgiasanpham = jsonObject.getString("danhgiasanpham");
+                                    mangsanpham.add(new Sanpham(ID,Tensanpham,Giasanpham,Hinhanhsanpham,Motasanpham,IDsanpham,Soluongsanpham,Usernamedg,Danhgiasanpham));
                                     sanphamAdapter.notifyDataSetChanged();
                                 }
                             } catch (JSONException e) {
@@ -241,6 +274,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(jsonArrayRequest);
     }
 
+
+
+
     protected void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
         mangquangcao.add("https://cdn.tgdd.vn/qcao/08_10_2018_09_17_53_HuaweiY9-800-300.png");
@@ -284,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerLayoutMain = (DrawerLayout) findViewById(R.id.drawerlayout_activity_main);
         arrayListmodelPro = new ArrayList<>();
-//        arrayListmodelPro.add(0, new ModelProduct(0, "Home","https://i.imgur.com/R0dJK3E.png"));
+        arrayListmodelPro.add(0, new ModelProduct(0, "Tài Khoản","https://img.icons8.com/ios/100/e67e22/guest-male-filled.png"));
 
         modelProductAdapter = new ModelProductAdapter(arrayListmodelPro,getApplicationContext());
         listViewMain.setAdapter(modelProductAdapter);

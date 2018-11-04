@@ -119,6 +119,9 @@ public class LaptopActivity extends AppCompatActivity {
                 String Hinhanhdt = "";
                 String Mota = "";
                 int Idspdt = 0;
+                int Soluongsanpham;
+                String Usernamedg;
+                String Danhgiasanpham;
                 if (response !=null && response.length() != 2){
                     lvdt.removeFooterView(footerview);
                     try {
@@ -131,7 +134,10 @@ public class LaptopActivity extends AppCompatActivity {
                             Hinhanhdt = jsonObject.getString("hinhanhsp");
                             Mota = jsonObject.getString("motasp");
                             Idspdt = jsonObject.getInt("idsanpham");
-                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt));
+                            Soluongsanpham = jsonObject.getInt("soluongsanpham");
+                            Usernamedg = jsonObject.getString("usernamedg");
+                            Danhgiasanpham = jsonObject.getString("danhgisanpham");
+                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt,Soluongsanpham,Usernamedg,Danhgiasanpham));
                             dienThoaiAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {

@@ -9,36 +9,66 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.khangit.project_group3.R;
+import com.example.khangit.project_group3.adapter.DanhgiaAdapter;
+import com.example.khangit.project_group3.adapter.DienThoaiAdapter;
+import com.example.khangit.project_group3.adapter.ModelProductAdapter;
+import com.example.khangit.project_group3.model.Danhgia;
 import com.example.khangit.project_group3.model.Giohang;
+import com.example.khangit.project_group3.model.ModelProduct;
 import com.example.khangit.project_group3.model.Sanpham;
+import com.example.khangit.project_group3.ultil.CheckConnection;
+import com.example.khangit.project_group3.ultil.Server;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class ChiTietSanPham extends AppCompatActivity {
     Toolbar toolbarchitiet;
     ImageView imageViewchitiet;
-    TextView txtten,txtgia,txtmota;
+    TextView txtten,txtgia,txtmota,txtdanhgia;
     Spinner spinner;
     Button btndatmua;
+
+    String iddanhgia ;
+    String username ="";
+    String danhgiasanpham ="";
+    String masanpham ;
+    ArrayList<Danhgia> arrayListDanhgia;
+    DanhgiaAdapter danhgiaAdapter;
+    ListView lvdanhgia;
+
 
     int id = 0;
     String Tenchitiet = "";
     int Giachitiet =0;
     String Hinhanhchitiet = "";
     String Motachitiet = "";
-    int Idsanpham=0;
+    int Idsanpham;
+    int Soluongsanpham=0;
+
 
 
     @Override
@@ -51,6 +81,7 @@ public class ChiTietSanPham extends AppCompatActivity {
         }
         GetInfomation();
         CatchEventSpinner();
+        Getdanhgia1();
         initEvent();
 
 
@@ -82,9 +113,9 @@ public class ChiTietSanPham extends AppCompatActivity {
                     for(int i = 0; i < MainActivity.manggiohang.size(); i ++){
                         if(MainActivity.manggiohang.get(i).getIdsp() == id){
                             MainActivity.manggiohang.get(i).setSoluongsp(MainActivity.manggiohang.get(i).getSoluongsp() +sl);
-                            if(MainActivity.manggiohang.get(i).getSoluongsp() >= 10){
-                                MainActivity.manggiohang.get(i).setSoluongsp(10);
-                                Toast.makeText(getApplicationContext(), "Quý khách chỉ được mua 10 sản phẩm",
+                            if(MainActivity.manggiohang.get(i).getSoluongsp() >= Soluongsanpham){
+                                MainActivity.manggiohang.get(i).setSoluongsp(Soluongsanpham);
+                                Toast.makeText(getApplicationContext(), " Sản phẩm không đủ",
                                         Toast.LENGTH_LONG).show();
                             }
                             MainActivity.manggiohang.get(i).setGiasp(Giachitiet * MainActivity.manggiohang.get(i).getSoluongsp());
@@ -110,7 +141,8 @@ public class ChiTietSanPham extends AppCompatActivity {
     }
 
     private void CatchEventSpinner() {
-        Integer[] soluong = new Integer[]{1,2,3,4,5,6,7,8,9,10};
+
+        Integer[] soluong = new Integer[]{1};
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_dropdown_item,soluong);
         spinner.setAdapter(arrayAdapter);
     }
@@ -122,16 +154,52 @@ public class ChiTietSanPham extends AppCompatActivity {
         Giachitiet = sanpham.getGiasanpham();
         Hinhanhchitiet = sanpham.getHinhanhsanpham();
         Idsanpham = sanpham.getIDSanpham();
+        Soluongsanpham = sanpham.getSoluongsanpham();
         Motachitiet = sanpham.getMotasanpham();
         txtten.setText(Tenchitiet);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        txtgia.setText("Giá : "+decimalFormat.format(Giachitiet)+"Đ");
+        txtgia.setText(decimalFormat.format(Giachitiet)+"Đ");
         txtmota.setText(Motachitiet);
         Picasso.with(getApplicationContext()).load(Hinhanhchitiet)
                 .placeholder(R.drawable.noimage)
                 .error(R.drawable.errorimg)
                 .into(imageViewchitiet);
     }
+
+    private void Getdanhgia1() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.Duongdandanhgia,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        if (response != null){
+                            try {
+                                for(int i = 0; i < response.length(); i++){
+                                    JSONObject jsonObject = response.getJSONObject(i);
+                                    username = jsonObject.getString("username");
+                                    danhgiasanpham = jsonObject.getString("danhgiasanpham");
+                                    masanpham = jsonObject.getString("masanpham");
+                                    arrayListDanhgia.add(new Danhgia(iddanhgia,username,danhgiasanpham,masanpham));
+                                    danhgiaAdapter.notifyDataSetChanged();
+                                    }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+//
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CheckConnection.ShowToast_Short(getApplicationContext(),error.toString());
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
+    }
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -154,5 +222,13 @@ public class ChiTietSanPham extends AppCompatActivity {
         txtmota = (TextView) findViewById(R.id.textviewmotachitietsanpham);
         spinner = (Spinner) findViewById(R.id.spinner);
         btndatmua = (Button) findViewById(R.id.buttondatmua);
+
+            lvdanhgia = findViewById(R.id.listviewdanhgia);
+            arrayListDanhgia = new ArrayList<>();
+            danhgiaAdapter = new DanhgiaAdapter(getApplicationContext(), arrayListDanhgia);
+            lvdanhgia.setAdapter(danhgiaAdapter);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+
     }
 }

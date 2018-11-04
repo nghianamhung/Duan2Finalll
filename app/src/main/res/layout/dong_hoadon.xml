@@ -1,34 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_result_login"
+    android:orientation="horizontal"
+    android:weightSum="10"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/coloActivityThongtin">
-
-    <ImageView
-        android:id="@+id/imageVIewuser"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/iconuser"
-        android:padding="5dp" />
-
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageVIew"
-        android:layout_centerHorizontal="true"
-        android:text="Thông tin khách hàng"
-        android:textColor="#FFF"
-        android:textSize="20sp" />
+    android:layout_height="match_parent">
     <LinearLayout
-        android:layout_marginTop="30dp"
-        android:id="@+id/layoutInput"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layoutInput1"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_centerHorizontal="true"
@@ -37,23 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtHoten1"
+                android:id="@+id/txtMasanpham1"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Họ và tên :"
                 android:textColor="@color/textIforuser"
+
+                android:text="Mã sản phảm "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtHoten"
+                android:id="@+id/txtMasanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -65,16 +43,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtPhone1"
+                android:id="@+id/txtTensanpham1"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Số điện thoại:"
                 android:textColor="@color/textIforuser"
 
+                android:text="Sản phẩm "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtPhone"
+                android:id="@+id/txtTensanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -86,16 +64,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtEmail1"
+                android:id="@+id/txtSoluong1"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/textIforuser"
 
-                android:text="Email: "
+                android:text="Số lượng: "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtEmail"
+                android:id="@+id/txtSoluong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -107,55 +85,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtNgaysinh1"
+                android:id="@+id/txtGiasanpham1"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/textIforuser"
 
-                android:text="Ngày sinh: "
+                android:text="Giá: "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtNgaysinh"
+                android:id="@+id/txtGiasanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:textSize="20sp" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtDiachi1"
-                android:layout_width="131dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/textIforuser"
-
-                android:text="Địa chỉ: "
-                android:textSize="20sp" />
-            <TextView
-                android:id="@+id/txtDiachi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
-        </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnCapnhap"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/coloActivityThongtin"
-        android:background="#fff"
-        android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cập nhập"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        />
 </LinearLayout>

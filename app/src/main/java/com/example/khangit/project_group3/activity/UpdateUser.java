@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -19,20 +20,21 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.khangit.project_group3.R;
 import com.example.khangit.project_group3.model.KhachHang;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.khangit.project_group3.ultil.Server.Duongdanregister;
 
+import static com.example.khangit.project_group3.ultil.Server.Duongdanupdate;
 
-public class RegisterActivity extends AppCompatActivity {
+public class UpdateUser extends AppCompatActivity {
 
-    public static final String TAG = RegisterActivity.class.getSimpleName();
+    public static final String TAG = UpdateUser.class.getSimpleName();
 
-    private EditText edtUserName;
+    private TextView txtUserName;
     private EditText edtPassWord;
     private EditText edtHoten;
     private EditText edtPhone;
@@ -40,9 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtNgaysinh;
     private EditText edtDiachi;
 
-    private Button btnRegister;
-    private Button btnLogin;
+
+    private Button btnUpdate;
+    private Button btnDone;
     private ProgressDialog pDialog;
+
+    private KhachHang khachHang;
 
 
     public static final String KEY_USERNAME = "username";
@@ -57,17 +62,20 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_update_user);
+        Intent intent = getIntent();
+        khachHang = new KhachHang();
+        khachHang = (KhachHang) intent.getSerializableExtra("login");
         addControls();
         addEvents();
     }
 
     private void addEvents() {
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Get data input
-                String username = edtUserName.getText().toString().trim();
+                String username = txtUserName.getText().toString().trim();
                 String password = edtPassWord.getText().toString().trim();
                 String hoten = edtHoten.getText().toString().trim();
                 String phone = edtPhone.getText().toString().trim();
@@ -80,18 +88,21 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser(username, password,hoten,phone, email,ngaysinh,diachi);
             }
         });
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), InfoUser.class);
+                intent.putExtra("login", khachHang);
                 startActivity(intent);
+                finish();
+
             }
         });
     }
 
     private void addControls() {
 
-        edtUserName = (EditText) findViewById(R.id.editUsername);
+        txtUserName = (TextView) findViewById(R.id.txtUsername);
         edtPassWord = (EditText) findViewById(R.id.editPassword);
         edtHoten = (EditText) findViewById(R.id.editHoten);
         edtPhone = (EditText) findViewById(R.id.editPhone);
@@ -99,9 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
         edtNgaysinh = (EditText) findViewById(R.id.editNgaysinh);
         edtDiachi = (EditText) findViewById(R.id.editDiachi);
 
+        txtUserName.setText(khachHang.getUserName()+"");
 
-        btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
+
+
+        btnUpdate = (Button) findViewById(R.id.btnUpdate);
+        btnDone = (Button) findViewById(R.id.btnDone);
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Đang đăng ký...");
         pDialog.setCanceledOnTouchOutside(false);
@@ -120,9 +134,9 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void registerUser(final String username, final String password,final String hoten, final String phone, final String email, final String ngaysinh, final String diachi) {
 
-        if (checkEditText(edtUserName) && checkEditText(edtPassWord) && checkEditText(edtHoten) && checkEditText(edtPhone) && checkEditText(edtEmail) && checkEditText(edtNgaysinh) &&checkEditText(edtDiachi) && isValidEmail(email))  {
+        if ( checkEditText(edtPassWord) && checkEditText(edtHoten) && checkEditText(edtPhone) && checkEditText(edtEmail) && checkEditText(edtNgaysinh) &&checkEditText(edtDiachi) && isValidEmail(email))  {
             pDialog.show();
-            StringRequest registerRequest = new StringRequest(Request.Method.POST, Duongdanregister,
+            StringRequest registerRequest = new StringRequest(Request.Method.POST, Duongdanupdate,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -134,14 +148,22 @@ public class RegisterActivity extends AppCompatActivity {
                                     KhachHang khachHang = new KhachHang();
                                     khachHang.setUserName(jsonObject.getString("username"));
                                     khachHang.setPassword(jsonObject.getString("password"));
+                                    khachHang.setHoten(jsonObject.getString("hoten"));
+                                    khachHang.setPhone(jsonObject.getString("phone"));
+                                    khachHang.setEmail(jsonObject.getString("email"));
+                                    khachHang.setNgaysinh(jsonObject.getString("ngaysinh"));
+                                    khachHang.setDiachi(jsonObject.getString("diachi"));
+                                    khachHang.Trangthai="ok";
                                     message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(UpdateUser.this, message, Toast.LENGTH_LONG).show();
                                     //Start LoginActivity
-                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    Intent intent = new Intent(UpdateUser.this, InfoUser.class);
+                                    intent.putExtra("login", khachHang);
                                     startActivity(intent);
+                                    finish();
                                 } else {
                                     message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(UpdateUser.this, message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException error) {
                                 VolleyLog.d(TAG, "Error: " + error.getMessage());

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,14 +27,23 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
+ import com.example.khangit.project_group3.model.KhachHang;
 public class Thongtinkhachhang extends AppCompatActivity {
+
+    private KhachHang khachHang;
+
 
     EditText edttenkhachhang, edtemail, edtsdt;
     Button btnxacnhan,btntrove;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//            Intent intent = getIntent();
+//            khachHang = new KhachHang();
+//            khachHang = (KhachHang) intent.getSerializableExtra("login");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongtinkhachhang);
 
@@ -144,6 +154,12 @@ public class Thongtinkhachhang extends AppCompatActivity {
         btnxacnhan = (Button) findViewById(R.id.buttonxacnhan);
         btntrove = (Button) findViewById(R.id.buttontrove);
 
+//        edttenkhachhang.setText(khachHang.getHoten()+"");
+//        edtemail.setText(khachHang.getEmail()+"");
+//        edtsdt.setText(khachHang.getPhone()+"");
 
     }
+
+
+
 }

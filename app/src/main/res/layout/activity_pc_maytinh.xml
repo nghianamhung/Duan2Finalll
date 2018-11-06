@@ -18,13 +18,17 @@
     <ViewFlipper
         android:id="@+id/viewflipper_activity_pc"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@drawable/PCbanner">
     </ViewFlipper>
-    <EditText android:id="@+id/inputSearch"
+
+    <EditText
+        android:id="@+id/inputSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Search products.."
-        android:inputType="textVisiblePassword"/>
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:hint="Tìm kiếm sản phẩm... "
+        android:inputType="textVisiblePassword" />
     <ListView
         android:id="@+id/listviewpcmaytinh"
         android:layout_width="match_parent"

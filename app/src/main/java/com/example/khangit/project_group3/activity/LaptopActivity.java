@@ -135,9 +135,7 @@ public class LaptopActivity extends AppCompatActivity {
                             Mota = jsonObject.getString("motasp");
                             Idspdt = jsonObject.getInt("idsanpham");
                             Soluongsanpham = jsonObject.getInt("soluongsanpham");
-                            Usernamedg = jsonObject.getString("usernamedg");
-                            Danhgiasanpham = jsonObject.getString("danhgisanpham");
-                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt,Soluongsanpham,Usernamedg,Danhgiasanpham));
+                            mangdt.add(new Sanpham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt,Soluongsanpham));
                             dienThoaiAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {

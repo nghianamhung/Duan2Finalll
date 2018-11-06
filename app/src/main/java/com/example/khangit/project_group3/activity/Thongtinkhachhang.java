@@ -3,12 +3,11 @@ package com.example.khangit.project_group3.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.JsonReader;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,23 +26,16 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
- import com.example.khangit.project_group3.model.KhachHang;
+
 public class Thongtinkhachhang extends AppCompatActivity {
-
-    private KhachHang khachHang;
-
 
     EditText edttenkhachhang, edtemail, edtsdt;
     Button btnxacnhan,btntrove;
-
+    Toolbar toolbarkhachhang;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//            Intent intent = getIntent();
-//            khachHang = new KhachHang();
-//            khachHang = (KhachHang) intent.getSerializableExtra("login");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongtinkhachhang);
 
@@ -79,9 +71,12 @@ public class Thongtinkhachhang extends AppCompatActivity {
                                         @Override
                                         public void onResponse(String response) {
                                             if (response.equals("success")) {
-                                                MainActivity.manggiohang.clear();
+
                                                 CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn đã thêm dữ liệu giỏ hàng thành công");
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                Intent intent = new Intent(Thongtinkhachhang.this, Hoadon.class);
+                                                intent.putExtra("Ten",ten);
+                                                intent.putExtra("DiaChi", email);
+                                                intent.putExtra("SDT", sdt);
                                                 startActivity(intent);
                                                 CheckConnection.ShowToast_Short(getApplicationContext(), "Mời bạn tiếp tục mua hàng");
                                             } else {
@@ -154,12 +149,16 @@ public class Thongtinkhachhang extends AppCompatActivity {
         btnxacnhan = (Button) findViewById(R.id.buttonxacnhan);
         btntrove = (Button) findViewById(R.id.buttontrove);
 
-//        edttenkhachhang.setText(khachHang.getHoten()+"");
-//        edtemail.setText(khachHang.getEmail()+"");
-//        edtsdt.setText(khachHang.getPhone()+"");
 
     }
-
-
-
+    private void ActionToolbar() {
+        setSupportActionBar(toolbarkhachhang);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbarkhachhang.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 }

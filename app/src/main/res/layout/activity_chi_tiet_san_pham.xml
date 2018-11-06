@@ -100,7 +100,7 @@
             android:textSize="20sp" />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:background="@drawable/mota"
             android:layout_margin="1dp">
             <TextView
@@ -119,18 +119,34 @@
         android:background="#fff"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="Người dùng đánh giá"
-            android:textColor="#ff5722"
-            android:textSize="20sp" />
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <EditText
+                android:layout_margin="5dp"
+                android:id="@+id/edtdanhgia"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:background="@drawable/mota2"
+                />
+            <Button
+                android:id="@+id/btndanhgia"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_btn_add_cart"
+                android:text="Nhận xét"
+                android:textColor="#fff"/>
 
 
 
-            <ListView
+        </LinearLayout>
+
+
+
+        <ListView
                 android:id="@+id/listviewdanhgia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

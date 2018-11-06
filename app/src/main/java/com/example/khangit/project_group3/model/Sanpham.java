@@ -12,8 +12,6 @@ public class Sanpham implements Serializable{
     public String Motasanpham;
     public int IDSanpham;
     public int Soluongsanpham;
-    public String Usernamedg;
-    public String Danhgiasanpham;
     public static int Soluonggioihan;
 
 
@@ -21,29 +19,19 @@ public class Sanpham implements Serializable{
 
 
 
-    public Sanpham(int id, String tensanpham, Integer giasanpham, String hinhanhsanpham, String motasanpham, int IDSanpham, int Soluongsanpham,String usernamedg,String danhgiasanpham) {
+    public Sanpham(int id, String tensanpham, Integer giasanpham, String hinhanhsanpham, String motasanpham, int IDSanpham, int Soluongsanpham) {
         this.id = id;
         Tensanpham = tensanpham;
         Giasanpham = giasanpham;
         Hinhanhsanpham = hinhanhsanpham;
         Motasanpham = motasanpham;
-        Usernamedg = usernamedg;
-        Danhgiasanpham = danhgiasanpham;
         this.IDSanpham = IDSanpham;
         this.Soluongsanpham = Soluongsanpham;
         Soluonggioihan = Soluongsanpham -1;
     }
-    public String getUsernamedg(){return Usernamedg;}
 
-    public void setUsernamedg(String usernamedg) {
-        this.Usernamedg = usernamedg;
-    }
 
-    public String getDanhgiasanpham(){return Danhgiasanpham;}
 
-    public void setDanhgiasanpham(String danhgiasanpham) {
-        this.Danhgiasanpham = danhgiasanpham;
-    }
 
     public int getSoluongsanpham(){return Soluongsanpham;}
 

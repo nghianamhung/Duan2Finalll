@@ -114,12 +114,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 0 :
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
                             if (KhachHang.Trangthai == "ok") {
-                                Intent intent = new Intent(MainActivity.this, InfoUser.class);
-                                intent.putExtra("idloaisanpham",arrayListmodelPro.get(i).getId());
+                                Intent intent = new Intent(getApplicationContext(), InfoUser.class);
                                 intent.putExtra("login", khachHang);
                                 startActivity(intent);
                             }else {
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                intent.putExtra("login", khachHang);
                                 startActivity(intent);
                             }
 
@@ -222,9 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     Motasanpham = jsonObject.getString("motasp");
                                     IDsanpham = jsonObject.getInt("idsanpham");
                                     Soluongsanpham = jsonObject.getInt("soluongsanpham");
-                                    Usernamedg = jsonObject.getString("usernamedg");
-                                    Danhgiasanpham = jsonObject.getString("danhgiasanpham");
-                                    mangsanpham.add(new Sanpham(ID,Tensanpham,Giasanpham,Hinhanhsanpham,Motasanpham,IDsanpham,Soluongsanpham,Usernamedg,Danhgiasanpham));
+                                    mangsanpham.add(new Sanpham(ID,Tensanpham,Giasanpham,Hinhanhsanpham,Motasanpham,IDsanpham,Soluongsanpham));
                                     sanphamAdapter.notifyDataSetChanged();
                                 }
                             } catch (JSONException e) {

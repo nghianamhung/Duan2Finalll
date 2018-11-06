@@ -1,38 +1,40 @@
 package com.example.khangit.project_group3.activity;
 
-import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.khangit.project_group3.R;
 import com.example.khangit.project_group3.adapter.DanhgiaAdapter;
-import com.example.khangit.project_group3.adapter.DienThoaiAdapter;
-import com.example.khangit.project_group3.adapter.ModelProductAdapter;
 import com.example.khangit.project_group3.model.Danhgia;
 import com.example.khangit.project_group3.model.Giohang;
-import com.example.khangit.project_group3.model.ModelProduct;
+import com.example.khangit.project_group3.model.KhachHang;
 import com.example.khangit.project_group3.model.Sanpham;
 import com.example.khangit.project_group3.ultil.CheckConnection;
 import com.example.khangit.project_group3.ultil.Server;
@@ -44,8 +46,15 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.khangit.project_group3.ultil.Server.Duongdansetdanhgia;
 
 public class ChiTietSanPham extends AppCompatActivity {
+    public static final String TAG = ChiTietSanPham.class.getSimpleName();
+
+
     Toolbar toolbarchitiet;
     ImageView imageViewchitiet;
     TextView txtten,txtgia,txtmota,txtdanhgia;
@@ -69,6 +78,14 @@ public class ChiTietSanPham extends AppCompatActivity {
     int Idsanpham;
     int Soluongsanpham=0;
 
+    private EditText edtdanhgia;
+    private Button btndanhgia;
+    private ProgressDialog pDialog;
+
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_IDDANHGIA = "iddanhgia";
+    public static final String KEY_MASANPHAM = "masanpham";
+    public static final String KEY_DANHGIASANPHAM = "danhgiasanpham";
 
 
     @Override
@@ -79,9 +96,14 @@ public class ChiTietSanPham extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActionToolbar();
         }
+        Intent intent = this.getIntent();
+        masanpham= intent.getStringExtra("masanpham");
+
         GetInfomation();
         CatchEventSpinner();
         Getdanhgia1();
+//      Getdanhgia();
+        Setdanhgia(danhgiasanpham);
         initEvent();
 
 
@@ -184,7 +206,8 @@ public class ChiTietSanPham extends AppCompatActivity {
                                     masanpham = jsonObject.getString("masanpham");
                                     arrayListDanhgia.add(new Danhgia(iddanhgia,username,danhgiasanpham,masanpham));
                                     danhgiaAdapter.notifyDataSetChanged();
-                                    }
+
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -200,6 +223,77 @@ public class ChiTietSanPham extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    public void Setdanhgia(String danhgiasanpham) {
+
+            StringRequest requestLogin = new StringRequest(Request.Method.POST, Duongdansetdanhgia,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d(TAG, response);
+                            String message = "";
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                if (jsonObject.getInt("success") == 1) {
+                                    Danhgia danhgia = new Danhgia(iddanhgia,username, ChiTietSanPham.this.danhgiasanpham,masanpham);
+                                    danhgia.setIddanhgia(jsonObject.getString("iddanhgia"));
+                                    danhgia.setDanhgiasanpham(jsonObject.getString("danhsachsanpham"));
+                                    danhgia.setMasanpham(jsonObject.getString("masanpham"));
+                                    danhgia.setUsername(jsonObject.getString("username"));
+                                    message = jsonObject.getString("message");
+                                    Toast.makeText(ChiTietSanPham.this, message, Toast.LENGTH_SHORT).show();
+
+
+                                    Intent intent = new Intent();
+                                    intent.putExtra("masanpham", masanpham);
+
+                                    startActivity(intent);
+                                    finish();
+
+                                } else {
+                                    message = jsonObject.getString("message");
+                                    Toast.makeText(ChiTietSanPham.this, message, Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            pDialog.dismiss();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        }
+                    }) {
+                /**
+                 * set paramater
+                 * */
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+
+                    params.put(KEY_USERNAME, username);
+                    params.put(KEY_MASANPHAM, masanpham);
+                    params.put(KEY_IDDANHGIA, iddanhgia);
+                    params.put(KEY_DANHGIASANPHAM, ChiTietSanPham.this.danhgiasanpham);
+
+                    return params;
+                }
+            };
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(requestLogin);
+        }
+
+
+
+//    private void Getdanhgia() {
+//        Danhgia danhgia = (Danhgia) getIntent().getSerializableExtra("danhgia");
+//        iddanhgia = danhgia.getIddanhgia()+"";
+//        danhgiasanpham = danhgia.getDanhgiasanpham()+"";
+//        username = danhgia.getUsername()+"";
+//        masanpham = danhgia.getMasanpham()+"";
+//
+//    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -222,13 +316,15 @@ public class ChiTietSanPham extends AppCompatActivity {
         txtmota = (TextView) findViewById(R.id.textviewmotachitietsanpham);
         spinner = (Spinner) findViewById(R.id.spinner);
         btndatmua = (Button) findViewById(R.id.buttondatmua);
+        btndanhgia = (Button) findViewById(R.id.btndanhgia) ;
+        txtdanhgia = (TextView) findViewById(R.id.tvdanhgia);
 
             lvdanhgia = findViewById(R.id.listviewdanhgia);
             arrayListDanhgia = new ArrayList<>();
             danhgiaAdapter = new DanhgiaAdapter(getApplicationContext(), arrayListDanhgia);
             lvdanhgia.setAdapter(danhgiaAdapter);
 
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        }
 
     }
-}
+

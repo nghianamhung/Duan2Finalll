@@ -8,8 +8,8 @@ public class Danhgia implements Serializable {
     public String danhgiasanpham;
     public String masanpham;
 
-    public Danhgia(String Iddanhgia, String Username, String Danhgiasanpham, String Masanpham) {
-        iddanhgia=Iddanhgia;
+    public Danhgia(String Iddanhgia, String Username, String Danhgiasanpham, String Masanpham)  {
+        iddanhgia = Iddanhgia;
         username = Username;
         danhgiasanpham = Danhgiasanpham;
         masanpham = Masanpham;

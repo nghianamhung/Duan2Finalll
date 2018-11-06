@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_result_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/coloActivityThongtin">
 
-    <ImageView
-        android:id="@+id/imageVIewuser"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/iconuser"
-        android:padding="5dp" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarhoadon"
+        app:title="Hóa Đơn"
+        app:titleTextColor="#fff"
+        android:background="@color/coloActivityGioHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:layout_below="@id/imageVIew"
         android:layout_centerHorizontal="true"
-        android:text="Thông tin đơn hàng"
+        android:text="Thông tin người đặt"
         android:textColor="#FFF"
         android:textSize="20sp" />
     <LinearLayout
@@ -53,10 +54,11 @@
                 android:textColor="@color/textIforuser"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtHoten"
+                android:id="@+id/txtTenNguoiNhan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+
                 android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
@@ -74,7 +76,7 @@
 
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtPhone"
+                android:id="@+id/txtSoDienThoai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -96,18 +98,27 @@
                 android:text="Địa chỉ: "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/txtDiachi"
+                android:id="@+id/txtDiaChi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
+    <TextView
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/imageVIew"
+        android:layout_centerHorizontal="true"
+        android:text="Sản phẩm"
+        android:textColor="#FFF"
+        android:textSize="20sp" />
     <LinearLayout
         android:background="@drawable/background_white"
-        android:layout_weight="7"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp">
@@ -122,9 +133,41 @@
             </ListView>
         </FrameLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txtThanhTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Thành tiền"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtThanhTienHoaDon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng tiền: "
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnTieptuc"
+        android:id="@+id/btn_tiep_tuc_hoa_don"
         android:layout_marginTop="10dp"
         android:textColor="@color/coloActivityThongtin"
         android:background="#fff"

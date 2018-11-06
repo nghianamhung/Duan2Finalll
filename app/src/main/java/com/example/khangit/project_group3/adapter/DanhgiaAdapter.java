@@ -7,14 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.khangit.project_group3.R;
-import com.example.khangit.project_group3.activity.ChiTietSanPham;
 import com.example.khangit.project_group3.model.Danhgia;
-import com.example.khangit.project_group3.model.Sanpham;
-import com.example.khangit.project_group3.ultil.CheckConnection;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_result_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/coloActivityThongtin">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbaruser"
+        app:titleTextColor="#fff"
+        android:background="@color/coloActivityGioHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageVIewuser"
@@ -46,18 +55,18 @@
 
             <TextView
                 android:id="@+id/txtHoten1"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="Họ và tên :"
-                android:textColor="@color/textIforuser"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/txtHoten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,19 +75,18 @@
 
             <TextView
                 android:id="@+id/txtPhone1"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="Số điện thoại:"
-                android:textColor="@color/textIforuser"
-
+                android:textStyle="bold"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/txtPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,11 +95,10 @@
 
             <TextView
                 android:id="@+id/txtEmail1"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textColor="@color/textIforuser"
-
+                android:textStyle="bold"
                 android:text="Email: "
                 android:textSize="20sp" />
             <TextView
@@ -99,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,11 +115,10 @@
 
             <TextView
                 android:id="@+id/txtNgaysinh1"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textColor="@color/textIforuser"
-
+                android:textStyle="bold"
                 android:text="Ngày sinh: "
                 android:textSize="20sp" />
             <TextView
@@ -120,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,11 +135,10 @@
 
             <TextView
                 android:id="@+id/txtDiachi1"
-                android:layout_width="131dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textColor="@color/textIforuser"
-
+                android:textStyle="bold"
                 android:text="Địa chỉ: "
                 android:textSize="20sp" />
             <TextView
@@ -141,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -158,4 +163,5 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
+
 </LinearLayout>

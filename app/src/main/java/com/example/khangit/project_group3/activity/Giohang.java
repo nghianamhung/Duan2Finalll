@@ -59,7 +59,7 @@ public class Giohang extends AppCompatActivity {
                 if(MainActivity.manggiohang.size() > 0){
 
                     if (KhachHang.Trangthai == "ok") {
-                        Intent intent = new Intent(getApplicationContext(),Thongtinkhachhang.class);
+                        Intent intent = new Intent(getApplicationContext(), Thongtinkhachhang.class);
                         startActivity(intent);
                     }else {
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -119,7 +119,7 @@ public class Giohang extends AppCompatActivity {
             tongtien += MainActivity.manggiohang.get(i).getGiasp();
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        txttongtien.setText("Tổng Giá: "+decimalFormat.format(tongtien) + " Đ");
+        txttongtien.setText(decimalFormat.format(tongtien) + " Đ");
     }
 
 

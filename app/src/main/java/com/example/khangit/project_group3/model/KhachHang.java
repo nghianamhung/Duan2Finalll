@@ -1,14 +1,10 @@
 package com.example.khangit.project_group3.model;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.example.khangit.project_group3.R;
 
 import java.io.Serializable;
 
-public class KhachHang extends AppCompatActivity implements  Serializable {
+public class KhachHang  implements  Serializable {
 
     public static String Trangthai;
     public String userName;
